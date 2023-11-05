@@ -1,0 +1,34 @@
+{% extends 'myappF23/base.html' %}
+
+{% block myhdg %}
+    Hello Krunali
+{% endblock %}
+
+{% block body_block %}
+    <div class="categories">
+        {% if category_list %}
+            <h2>List of Categories</h2>
+            <ol>
+                {% for category in category_list %}
+                    <li><a href="{% url 'myappF23:detail' category.id %}">{{ category.name }}</a></li>
+                {% endfor %}
+            </ol>
+        {% else %}
+            <strong>There are no available categories!</strong>
+        {% endif %}
+    </div>
+
+    <div class="professors">
+        {% if professor_list %}
+            <h2>List of Professors</h2>
+            <ol>
+                {% for professor in professor_list %}
+                    <!-- Assuming the URL name for professor detail is 'myappF23:professor_detail' -->
+                    <li><a href="{% url 'myappF23:instructor_courses_students' professor.id %}">{{ professor.first_name }} {{ professor.last_name }}</a></li>
+                {% endfor %}
+            </ol>
+        {% else %}
+            <strong>There are no available professors!</strong>
+        {% endif %}
+    </div>
+{% endblock %}
